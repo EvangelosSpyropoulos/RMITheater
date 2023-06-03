@@ -7,7 +7,7 @@ public class Guest {
     private EnumMap<SeatType, Integer> reservedSeats;
 
     public Guest() {
-        reservedSeats = new EnumMap<SeatType, Integer>();
+        reservedSeats = new EnumMap<SeatType, Integer>(SeatType.class);
     }
 
     public EnumMap<SeatType, Integer> getReservedSeats() {

@@ -8,7 +8,7 @@ public interface THInterface extends Remote {
     public BookingStatus book(SeatType type, int num, String name) 
         throws RemoteException;
     public GuestList guests() throws RemoteException;
-    public SeatList cancel(SeatType type, int num, String name) 
+    public ReservedSeatList cancel(SeatType type, int num, String name) 
         throws RemoteException;
 }
 

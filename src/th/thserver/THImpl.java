@@ -3,6 +3,8 @@ import th.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.EnumMap;
 
 public class THImpl extends UnicastRemoteObject implements THInterface {
     Theater theater;
@@ -27,17 +29,21 @@ public class THImpl extends UnicastRemoteObject implements THInterface {
     @Override
     public BookingStatus book(SeatType type, int num, String name) 
         throws RemoteException {
-        
+        return new GuestBookingStatus();
     }
 
     @Override
     public GuestList guests() throws RemoteException {
-        
+        return new TheaterGuestList();
     }
 
-    public SeatList cancel(SeatType type, int num, String name) 
+    @Override
+    public ReservedSeatList cancel(SeatType type, int num, String name) 
         throws RemoteException {
-        
+        return new CancellationSeatList(
+            new EnumMap<SeatType, 
+            Integer>(SeatType.class), 0
+        );
     }
 
 
