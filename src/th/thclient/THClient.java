@@ -16,8 +16,9 @@ public class THClient {
                     System.out.println(theater.list());
                 } catch (RemoteException re) {
                     System.err.println(
-                        "Error calling remote method list: " + re.getStackTrace()
+                        "Error calling remote method list: "
                     );
+                    re.getStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }
@@ -34,13 +35,23 @@ public class THClient {
                     System.out.println(args[2] + " is not a valid seat type.");
                 } catch (RemoteException re) {
                     System.err.println(
-                        "Error calling remote method book: " + re.getStackTrace()
+                        "Error calling remote method book: "
                     );
+                    re.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }
             } else if (args[0].equals("guests") && args.length == 2) {
-                
+                try {
+                    System.out.println(theater.guests());
+                } catch (RemoteException re) {
+                    System.err.println(
+                        "Error calling remote method guests: "
+                    );
+                    re.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
             } else if (args[0].equals("cancel") && args.length == 5) {
 
             } else {

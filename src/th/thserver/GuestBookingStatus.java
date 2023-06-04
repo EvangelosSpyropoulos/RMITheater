@@ -27,7 +27,7 @@ public class GuestBookingStatus extends BookingStatus {
                 "Θα θέλατε να κάνετε κράτηση " + numSeats + 
                 (numSeats == 1? " θέσης" : " θέσεων") + ";\n" +
                 "Συνολικό κόστος κράτησης: 0.0 Ευρώ.\n" +
-                "Κόστος προτινόμενης κράτησης: " + bookingCost + " Ευρώ.\n"; 
+                "Κόστος προτεινόμενης κράτησης: " + bookingCost + " Ευρώ.\n"; 
             ;
         }
 

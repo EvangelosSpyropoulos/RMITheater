@@ -4,6 +4,7 @@ import th.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.EnumMap;
+import java.util.LinkedHashMap;
 
 public class THImpl extends UnicastRemoteObject implements THInterface {
     Theater theater;
@@ -11,11 +12,11 @@ public class THImpl extends UnicastRemoteObject implements THInterface {
     THImpl() throws RemoteException {
         super(0);
         EnumMap<SeatType, SeatCategory> seats = new EnumMap<SeatType, SeatCategory>(SeatType.class);
-        seats.put(SeatType.SA, new SeatCategory(100, SeatType.SA, 30.0f));
-        seats.put(SeatType.SB, new SeatCategory(200, SeatType.SB, 20.0f));
-        seats.put(SeatType.SC, new SeatCategory(300, SeatType.SC, 15.0f));
-        seats.put(SeatType.CB, new SeatCategory(300, SeatType.CB, 40.0f));
-        seats.put(SeatType.SG, new SeatCategory(300, SeatType.SG, 35.0f));
+        seats.put(SeatType.SA, new SeatCategory(100, SeatType.SA, 45.0f));
+        seats.put(SeatType.SB, new SeatCategory(200, SeatType.SB, 35.0f));
+        seats.put(SeatType.SC, new SeatCategory(300, SeatType.SC, 25.0f));
+        seats.put(SeatType.CB, new SeatCategory(300, SeatType.CB, 30.0f));
+        seats.put(SeatType.SG, new SeatCategory(300, SeatType.SG, 20.0f));
 
         theater = new Theater(seats);
     }
@@ -49,7 +50,7 @@ public class THImpl extends UnicastRemoteObject implements THInterface {
 
     @Override
     public GuestList guests() throws RemoteException {
-        return new TheaterGuestList();
+        return new TheaterGuestList(theater);
     }
 
     @Override

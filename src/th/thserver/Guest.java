@@ -1,9 +1,10 @@
 package th.thserver;
 import th.*;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 
-public class Guest {
+public class Guest implements Serializable {
     String name;
     private EnumMap<SeatType, Integer> reservedSeats;
 
