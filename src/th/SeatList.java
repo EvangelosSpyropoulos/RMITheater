@@ -1,7 +1,7 @@
 package th;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
 
 public abstract class SeatList extends RMIMessage {
-    protected ArrayList<SeatCategory> seats;
+    protected EnumMap<SeatType, SeatCategory> seats;
 }

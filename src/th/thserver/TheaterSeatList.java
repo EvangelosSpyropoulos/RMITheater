@@ -2,18 +2,22 @@ package th.thserver;
 import th.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.EnumMap;
 
 public class TheaterSeatList extends SeatList {
-    public TheaterSeatList(ArrayList<SeatCategory> seats) {
+    public TheaterSeatList(EnumMap<SeatType, SeatCategory> seats) {
         this.seats = seats;
     }
 
     @Override
     protected String showMessage() {
         String msg = new String();
-        for (SeatCategory seat : seats) {
-            msg += Integer.toString(seat.availableSeats) + " θέσεις ";
+        for (SeatType type : seats.keySet()) {
+            SeatCategory seat = seats.get(type);
+            msg += 
+                Integer.toString(seat.availableSeats) + 
+                (seat.availableSeats == 1 ? " θέση " : " θέσεις ")
+            ;
             switch(seat.type) {
                 case SA:
                     msg += "Πλατεία - Ζώνη Α (κωδικός: ΠΑ) - τιμή: " + 

@@ -1,18 +1,33 @@
 package th.thserver;
 import th.*;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
 
 public class Theater {
-    private ArrayList<SeatCategory> seats;
-    private ArrayList<Guest> guests;
+    private EnumMap<SeatType, SeatCategory> seats;
+    private LinkedHashMap<String, Guest> guests;
 
-    public Theater(ArrayList<SeatCategory> seats, ArrayList<Guest> guests) {
+    public Theater(EnumMap<SeatType, SeatCategory> seats) {
         this.seats = seats;
-        this.guests = guests;
+        guests = new LinkedHashMap<String, Guest>();
     }
 
-    public ArrayList<SeatCategory> getSeats() {
+    public boolean book(SeatType type, int num, String name) {
+        if (!guests.containsKey(name)) {
+            guests.put(name, new Guest(name));
+        }
+
+        if (num <= seats.get(type).availableSeats) {
+            seats.get(type).availableSeats -= num;
+            guests.get(name).reserve(type, num);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public EnumMap<SeatType, SeatCategory> getSeats() {
         return seats;
     }
 }

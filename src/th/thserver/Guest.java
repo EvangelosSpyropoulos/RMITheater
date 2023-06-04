@@ -4,9 +4,11 @@ import th.*;
 import java.util.EnumMap;
 
 public class Guest {
+    String name;
     private EnumMap<SeatType, Integer> reservedSeats;
 
-    public Guest() {
+    public Guest(String name) {
+        this.name = name;
         reservedSeats = new EnumMap<SeatType, Integer>(SeatType.class);
     }
 
@@ -17,7 +19,7 @@ public class Guest {
     public void reserve(SeatType type, int num) {
         if (num < 0) { return; }
 
-        if (reservedSeats.containsKey(type)) {
+        if (!reservedSeats.containsKey(type)) {
             reservedSeats.put(type, num);
         } else {
             reservedSeats.put(type, reservedSeats.get(type) + num);
