@@ -85,16 +85,22 @@ public class THClient {
             "Usage: java THClient cmd options\n\n" +
             "Commands:\n" +
             "java THClient list <hostname>\n" +
-            "\t Lists available seats at theater located at <hostname>\n\n" +
+            "\tLists available seats at theater located at <hostname>\n\n" +
             "java THClient book <hostname> <type> <number> <name>\n" +
-            "\t Books <number> seats of type <type> for guest with name " + 
+            "\tBooks <number> seats of type <type> for guest with name " + 
             "<name> at theater located at <hostname>\n\n" +
             "java THClient guests <hostname>\n" +
-            "\t Lists all theater guests and the reservations booked by " + 
+            "\tLists all theater guests and the reservations booked by " + 
             "each guest at theater located at <hostname>\n\n" +
             "java THClient cancel <hostname> <type> <number> <name>\n" +
-            "\t Cancels <number> reservations for seats of type <type> " + 
-            "booked by guest with name <name> at theater located at <hostname>\n"
+            "\tCancels <number> reservations for seats of type <type> " + 
+            "booked by guest with name <name> at theater located at <hostname>\n\n" +
+            "Valid <type> values:\n" +
+            "\tSA\n" +
+            "\tSB\n" +
+            "\tSC\n" +
+            "\tCB\n" +
+            "\tSG\n"
         );
     }
 }
