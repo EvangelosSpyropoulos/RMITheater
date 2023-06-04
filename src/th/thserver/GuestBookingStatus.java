@@ -14,7 +14,7 @@ public class GuestBookingStatus extends BookingStatus {
 
     @Override
     protected String showMessage() {
-        String msg = new String();
+        String msg;
         if (couldReserve) {
             msg = 
                 "Κρατήθηκαν επιτυχώς " + numSeats + " θέσεις.\n" +
@@ -22,10 +22,12 @@ public class GuestBookingStatus extends BookingStatus {
             ;
         } else {
             msg = 
-                "Η κράτηση ήταν ανεπιτυχής. Υπάρχουν μόνο " + numSeats + 
-                " διαθέσιμες θέσεις αυτού του τύπου.\n" +
+                "Η κράτηση ήταν ανεπιτυχής. " + 
+                (numSeats == 1 ? "Υπάρχει" : "Υπάρχουν") + " μόνο " + numSeats + 
+                (numSeats == 1 ? " διαθέσιμη θέση" : " διαθέσιμες θέσεις") + 
+                " αυτού του τύπου.\n" +
                 "Θα θέλατε να κάνετε κράτηση " + numSeats + 
-                (numSeats == 1? " θέσης" : " θέσεων") + ";\n" +
+                (numSeats == 1 ? " θέσης" : " θέσεων") + ";\n" +
                 "Συνολικό κόστος κράτησης: 0.0 Ευρώ.\n" +
                 "Κόστος προτεινόμενης κράτησης: " + bookingCost + " Ευρώ.\n"; 
             ;

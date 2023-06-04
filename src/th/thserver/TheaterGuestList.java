@@ -23,10 +23,44 @@ public class TheaterGuestList extends GuestList {
                 msg += "\tΔεν έχουν γίνει κρατήσεις.\n";
             } else {
                 for (SeatType type : reservedSeats.keySet()) {
-                    msg += 
-                        "\t" + reservedSeats.get(type) + " κρατήσεις " + 
-                        "θέσεων τύπου Πλατεία - Ζώνη Α (κωδικός: ΠΑ)\n"
-                    ;
+                    switch (type) {
+                        case SA: {
+                            msg += 
+                                "\t" + reservedSeats.get(type) + " κρατήσεις " + 
+                                "θέσεων τύπου Πλατεία - Ζώνη Α (κωδικός: ΠΑ)\n"
+                            ;
+                            break;
+                        }
+                        case SB: {
+                            msg += 
+                                "\t" + reservedSeats.get(type) + " κρατήσεις " + 
+                                "θέσεων τύπου Πλατεία - Ζώνη Β (κωδικός: ΠΒ)\n"
+                            ;
+                            break;
+                        }
+                        case SC: {
+                            msg += 
+                                "\t" + reservedSeats.get(type) + " κρατήσεις " + 
+                                "θέσεων τύπου Πλατεία - Ζώνη Γ (κωδικός: ΠΓ)\n"
+                            ;
+                            break;
+                        }
+                        case CB: {
+                            msg += 
+                                "\t" + reservedSeats.get(type) + " κρατήσεις " + 
+                                "θέσεων τύπου Κεντρικός Εξώστης (κωδικός: ΚΕ)\n"
+                            ;
+                            break;
+                        }
+                        case SG: {
+                            msg += 
+                                "\t" + reservedSeats.get(type) + " κρατήσεις " + 
+                                "θέσεων τύπου Πλαϊνά Θεωρεία (κωδικός: ΠΘ)\n"
+                            ;
+                            break;
+                        }
+                    }
+                    
                 }
             }
             msg += 

@@ -53,7 +53,22 @@ public class THClient {
                     e.printStackTrace(System.err);
                 }
             } else if (args[0].equals("cancel") && args.length == 5) {
-
+                try {
+                    System.out.println(
+                        theater.cancel(
+                            SeatType.valueOf(args[2]), 
+                            Integer.parseInt(args[3]), 
+                            args[4]
+                        )
+                    );
+                } catch (RemoteException re) {
+                    System.err.println(
+                        "Error calling remote method guests: "
+                    );
+                    re.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
             } else {
                 printUsage();
             }

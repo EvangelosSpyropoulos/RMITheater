@@ -19,28 +19,34 @@ public class TheaterSeatList extends SeatList {
                 (seat.availableSeats == 1 ? " θέση " : " θέσεις ")
             ;
             switch(seat.type) {
-                case SA:
+                case SA: {
                     msg += "Πλατεία - Ζώνη Α (κωδικός: ΠΑ) - τιμή: " + 
                         seat.price + " Ευρώ\n";
                     break;
-                case SB:
+                }
+                case SB: {
                     msg += "Πλατεία - Ζώνη Β (κωδικός: ΠΒ) - τιμή: " + 
                         seat.price + " Ευρώ\n";
                     break;
-                case SC:
+                }
+                case SC: {
                     msg += "Πλατεία - Ζώνη Γ (κωδικός: ΠΓ) - τιμή: " + 
                         seat.price + " Ευρώ\n";
                     break;
-                case CB:
+                }
+                case CB: {
                     msg += "Κεντρικός Εξώστης (κωδικός: ΚΕ) - τιμή: " + 
                         seat.price + " Ευρώ\n";
                     break;
-                case SG:
+                }
+                case SG: {
                     msg += "Πλαϊνά Θεωρεία (κωδικός: ΠΘ) - τιμή: " + 
                         seat.price + " Ευρώ\n";
                     break;
-                default:
+                }
+                default: {
                     break;
+                }
             }
         }
         return msg;

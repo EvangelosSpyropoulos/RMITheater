@@ -11,8 +11,3 @@ public interface THInterface extends Remote {
     public ReservedSeatList cancel(SeatType type, int num, String name) 
         throws RemoteException;
 }
-
-
-
-
-

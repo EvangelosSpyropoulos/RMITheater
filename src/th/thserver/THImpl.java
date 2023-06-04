@@ -29,23 +29,20 @@ public class THImpl extends UnicastRemoteObject implements THInterface {
     @Override
     public BookingStatus book(SeatType type, int num, String name) 
         throws RemoteException {
-        GuestBookingStatus guestBookingStatus;
         if (theater.book(type, num, name)) {
-            guestBookingStatus = new GuestBookingStatus(
+            return new GuestBookingStatus(
                 true, 
                 num, 
                 num * theater.getSeats().get(type).price
             );
         } else {
             int availableSeats = theater.getSeats().get(type).availableSeats;
-            guestBookingStatus = new GuestBookingStatus(
+            return new GuestBookingStatus(
                 false,
                 availableSeats,
                 availableSeats * theater.getSeats().get(type).price
             );
         }
-
-        return guestBookingStatus;
     }
 
     @Override
@@ -56,10 +53,28 @@ public class THImpl extends UnicastRemoteObject implements THInterface {
     @Override
     public ReservedSeatList cancel(SeatType type, int num, String name) 
         throws RemoteException {
-        return new CancellationSeatList(
-            new EnumMap<SeatType, 
-            Integer>(SeatType.class), 0
-        );
+        LinkedHashMap<String, Guest> guests = theater.getGuests();
+        if (theater.cancel(type, num, name)) {
+            return new CancellationSeatList(
+                true,
+                num,
+                guests.get(name).getReservedSeats()
+            );
+        } else {
+            return new CancellationSeatList(
+                false,
+                (
+                    guests.containsKey(name) && 
+                    guests.get(name).getReservedSeats().containsKey(type) ?
+                        guests.get(name).getReservedSeats().get(type)
+                        : -1
+                ),
+                (guests.containsKey(name) ?
+                    guests.get(name).getReservedSeats()
+                    : null
+                )
+            );
+        }
     }
 
 

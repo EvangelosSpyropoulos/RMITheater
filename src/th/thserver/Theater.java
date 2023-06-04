@@ -27,13 +27,26 @@ public class Theater implements Serializable {
             guests.put(name, new Guest(name));
         }
 
-        if (num <= seats.get(type).availableSeats) {
-            seats.get(type).availableSeats -= num;
-            guests.get(name).reserve(type, num);
-            return true;
-        } else {
-            return false;
-        }
+        if (num > seats.get(type).availableSeats) { return false; }
+        
+        seats.get(type).availableSeats -= num;
+        guests.get(name).reserve(type, num);
+        return true;
+        
+    }
+
+    public boolean cancel(SeatType type, int num, String name) {
+        if (!guests.containsKey(name)) { return false; }
+
+        Guest guest = guests.get(name);
+        if (
+            !guest.getReservedSeats().containsKey(type)
+            || num > guest.getReservedSeats().get(type)
+        ) { return false; }
+        
+        seats.get(type).availableSeats += num;
+        guest.cancel(type, num);
+        return true;
     }
 
     public float calculateGuestTotalCost(String name) {
