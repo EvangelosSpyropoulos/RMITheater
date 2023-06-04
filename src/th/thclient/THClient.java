@@ -11,7 +11,7 @@ public class THClient {
             if (args.length == 0) {
                 printUsage();
             } else if (args.length >= 2){
-                THInterface theater = (THInterface) Naming.lookup(args[1] + "/theater");
+                THInterface theater = (THInterface) Naming.lookup("rmi://" + args[1] + "/theater");
 
                 if (args[0].equals("list") && args.length == 2) {
                     try {
