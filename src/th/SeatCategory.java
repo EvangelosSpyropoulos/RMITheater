@@ -10,7 +10,7 @@ public class SeatCategory implements Serializable {
 
     public SeatCategory(int maxSeats, SeatType type, float price) {
         this.maxSeats = maxSeats;
-        this.availableSeats = availableSeats;
+        this.availableSeats = maxSeats;
         this.type = type;
         this.price = price;
     }

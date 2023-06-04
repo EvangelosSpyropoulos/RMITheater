@@ -2,7 +2,7 @@ package th;
 
 import java.io.Serializable;
 
-public abstract class RMIMessage {
+public abstract class RMIMessage implements Serializable {
     // Subclasses should define this internal method to declare
     // how the object is printed
     protected abstract String showMessage();

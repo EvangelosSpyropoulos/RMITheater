@@ -13,7 +13,7 @@ public class TheaterSeatList extends SeatList {
     protected String showMessage() {
         String msg = new String();
         for (SeatCategory seat : seats) {
-            msg = Integer.toString(seat.availableSeats) + " θέσεις ";
+            msg += Integer.toString(seat.availableSeats) + " θέσεις ";
             switch(seat.type) {
                 case SA:
                     msg += "Πλατεία - Ζώνη Α (κωδικός: ΠΑ) - τιμή: " + 
