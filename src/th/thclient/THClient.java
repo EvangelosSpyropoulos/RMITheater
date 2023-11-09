@@ -2,7 +2,10 @@ package th.thclient;
 import th.*;
 
 import java.rmi.Naming;
+import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class THClient {
     public static void main(String[] args) {
@@ -26,13 +29,54 @@ public class THClient {
                     }
                 } else if (args[0].equals("book") && args.length == 5) {
                     try {
-                        System.out.println(
-                            theater.book(
-                                SeatType.valueOf(args[2]), 
-                                Integer.parseInt(args[3]), 
-                                args[4]
-                            )
+                        BookingStatus bookingStatus;
+                        SeatType seatType = SeatType.valueOf(args[2]);
+
+                        bookingStatus = theater.book(
+                            seatType,
+                            Integer.parseInt(args[3]),
+                            args[4]
                         );
+                        System.out.println(bookingStatus);
+
+                        if (!bookingStatus.couldReserve()) {
+                            BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(System.in)
+                            );
+                            String answer;
+                            do {
+                                System.out.print("[y/n]: ");
+                                answer = reader.readLine();
+                            } while (
+                                !answer.toLowerCase().equals("y") &&
+                                !answer.toLowerCase().equals("n")
+                            );
+
+                            if (answer.equals("y")) {
+                                SeatsNotificationListener cancelledSeatsListener =
+                                    new SeatsNotificationListener()
+                                ;
+                                theater.registerSeatsCancelledListener(
+                                    seatType,
+                                    cancelledSeatsListener
+                                );
+
+                                System.out.println(
+                                    "Πληκτρολογείστε exit για να διαγραφείτε" +
+                                    " από τη λίστα αναμονής."
+                                );
+                                do {
+                                    answer = reader.readLine();
+                                } while (!answer.equals("exit"));
+
+                                theater.deregisterSeatsCancelledListener(
+                                    seatType,
+                                    cancelledSeatsListener
+                                );
+
+                                UnicastRemoteObject.unexportObject(cancelledSeatsListener, false);
+                            }
+                        }
                     } catch (IllegalArgumentException e) {
                         System.out.println(args[2] + " is not a valid seat type.");
                     } catch (RemoteException re) {

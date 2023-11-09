@@ -10,4 +10,12 @@ public interface THInterface extends Remote {
     public GuestList guests() throws RemoteException;
     public ReservedSeatList cancel(SeatType type, int num, String name) 
         throws RemoteException;
+    public void registerSeatsCancelledListener(
+        SeatType type, 
+        SeatsCancelledListener listener
+    ) throws RemoteException;
+    public void deregisterSeatsCancelledListener(
+        SeatType type,
+        SeatsCancelledListener listener
+    ) throws RemoteException;
 }
